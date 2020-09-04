@@ -63,6 +63,9 @@
     "react-native": ">=0.62.2",
     "react-native-web": ">=0.12.2"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "tsc --noEmit && lint-staged"
