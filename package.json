@@ -76,6 +76,11 @@
       "git add"
     ]
   },
+  "files": [
+    "android",
+    "ios",
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts"
 }
