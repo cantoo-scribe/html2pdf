@@ -1,7 +1,14 @@
 import html2pdf from 'html2pdf.js'
-export default function createPDF (html: string, filename: string) {
-  const opt = {
-    filename: filename + '.pdf'
+import type { PDFOptions } from './types'
+export default function createPDF (html: string, options: PDFOptions) {
+  const finalOpt = { ...options }
+  finalOpt.filename = `${finalOpt.filename}.pdf`
+  const worker = html2pdf().from(html).set(finalOpt)
+  if (finalOpt.open) {
+    return worker.outputPdf('blob').then(function (pdfBlob) {
+      const url = URL.createObjectURL(pdfBlob)
+      window.open(url)
+    })
   }
-  return html2pdf().from(html).set(opt).save()
+  return worker.save()
 }
